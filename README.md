@@ -1,7 +1,7 @@
 # Automated Player Tracking and Basic Tactical Analysis in Football Videos
 
 **IE 7615 — Neural Networks and Deep Learning | Final Project**
-**Khoury College of Computer Sciences, Northeastern University**
+**College of Engineering, Northeastern University**
 
 Charles Appiah · Frank Amankwah · Group 2
 
@@ -181,6 +181,28 @@ dl.downloadGame(files=['1_player_boundingbox_maskrcnn.json'], game='2015-02-21 -
 
 ```bash
 git clone https://github.com/statsbomb/open-data.git data/statsbomb
+```
+
+### Trained Models — Google Drive Download
+
+> **Download link:** [Click here to access all trained model weights](https://drive.google.com/drive/folders/19D7QgmqOYvP6Kfmth_2obXcNY0QYAkJM?usp=sharing)
+>
+> The Drive folder contains:
+> | File | Description | Result |
+> |---|---|---|
+> | `phase2_finetuned/weights/best.pt` | Main detection model | mAP@0.5 = 0.9010 |
+> | `broadcast_combined/weights/best.pt` | Broadcast demo model | mAP@0.5 = 0.8230 |
+> | `tactical_cnn_best.keras` | Tactical CNN classifier | 98.95% test accuracy |
+> | `phase1_baseline_metrics.json` | Baseline evaluation metrics | mAP@0.5 = 0.0027 |
+> | `phase3_finetuned_metrics.json` | Fine-tuned evaluation metrics | mAP@0.5 = 0.9010 |
+> | `tactical_metrics.json` | Tactical model metrics | 98.95% accuracy |
+> | `complete_system_results.json` | Full system evaluation results | All stages |
+
+To use a model locally, download `best.pt` and run:
+```python
+from ultralytics import YOLO
+model = YOLO("best.pt")
+results = model.predict("your_frame.jpg", conf=0.15)
 ```
 
 ### Expected folder structure on Google Drive
